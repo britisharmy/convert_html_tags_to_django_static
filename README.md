@@ -20,3 +20,8 @@ You can use the script to save you hours even days.
 # Caution
 
 Always back up your files before running the script to avoid accidental data loss.
+
+# Future Plans
+
+- Make it possible to convert all html files in a specific folder
+
