@@ -13,7 +13,7 @@ Enter the file you want to convert the tags for.
 
 # Use Cases
 
-You have purchased a html theme off themeforest for instance and you want to quickly turn the template into a fast website fast. The template comes with many absolute paths to the assets and you just want to get the tags for images, scripts or css working ASAP.
+You have purchased a html theme off themeforest for instance and you want to quickly turn the template into a  website fast. The template comes with many absolute paths to the assets and you just want to get the tags for images, scripts or css working ASAP.
 
 You can use the script to save you hours even days.
 
