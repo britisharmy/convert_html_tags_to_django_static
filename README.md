@@ -25,3 +25,9 @@ Always back up your files before running the script to avoid accidental data los
 
 - Make it possible to convert all html files in a specific folder
 
+# Untested convert all files inside a specifc folder
+
+- [x] Done
+
+Cheers.
+
