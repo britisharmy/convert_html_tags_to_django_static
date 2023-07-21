@@ -1,16 +1,25 @@
 from bs4 import BeautifulSoup
 import os
 
-def convert_static_tags(html_path):
+def add_load_static_tag(html_path):
     with open(html_path, 'r', encoding='utf-8') as file:
         soup = BeautifulSoup(file, 'html.parser')
 
-    # Add "{% load static %}" inside <head></head>
     head_tag = soup.find('head')
-    if head_tag and not head_tag.find(text="{% load static %}"):
-        load_static_tag = soup.new_tag("script")
-        load_static_tag.string = "{% load static %}"
+    if head_tag and not any(tag.name == 'script' and "{% load static %}" in tag for tag in head_tag.find_all()):
+        load_static_tag = soup.new_string("{% load static %}")
         head_tag.insert(0, load_static_tag)
+
+    # Pretty-print the modified HTML
+    modified_html = soup.prettify()
+
+    with open(html_path, 'w', encoding='utf-8') as file:
+        file.write(modified_html)
+
+
+def convert_static_tags(html_path):
+    with open(html_path, 'r', encoding='utf-8') as file:
+        soup = BeautifulSoup(file, 'html.parser')
 
     # Convert <script> tags
     script_tags = soup.find_all('script')
@@ -46,6 +55,7 @@ def convert_static_tags(html_path):
 if __name__ == "__main__":
     html_file_path = input("Enter the HTML file path: ")
     if os.path.exists(html_file_path):
+        add_load_static_tag(html_file_path)
         convert_static_tags(html_file_path)
         print("Conversion completed.")
     else:
