@@ -29,5 +29,9 @@ Always back up your files before running the script to avoid accidental data los
 
 - [x] Done
 
+# Added Partials Isolation
+
+- I added partials isolation. For now, `partials.py` will isolate `<footer>` into `footer.html` and write an include in your target file. This also happens for `<header>`
+  
 Cheers.
 
