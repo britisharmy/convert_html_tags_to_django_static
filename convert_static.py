@@ -5,12 +5,19 @@ def convert_static_tags(html_path):
     with open(html_path, 'r', encoding='utf-8') as file:
         soup = BeautifulSoup(file, 'html.parser')
 
+    # Add "{% load static %}" inside <head></head>
+    head_tag = soup.find('head')
+    if head_tag and not head_tag.find(text="{% load static %}"):
+        load_static_tag = soup.new_tag("script")
+        load_static_tag.string = "{% load static %}"
+        head_tag.insert(0, load_static_tag)
+
     # Convert <script> tags
     script_tags = soup.find_all('script')
     for tag in script_tags:
         if 'src' in tag.attrs:
             src = tag['src']
-            if not src.startswith('{% static'):
+            if not (src.startswith('{% static') or src.startswith('https://') or src.startswith('http://')):
                 tag['src'] = "{% static '" + src + "' %}"
 
     # Convert <link> tags
@@ -18,7 +25,7 @@ def convert_static_tags(html_path):
     for tag in link_tags:
         if 'href' in tag.attrs:
             href = tag['href']
-            if not href.startswith('{% static'):
+            if not (href.startswith('{% static') or href.startswith('https://') or href.startswith('http://')):
                 tag['href'] = "{% static '" + href + "' %}"
 
     # Convert <img> tags
@@ -26,7 +33,7 @@ def convert_static_tags(html_path):
     for tag in img_tags:
         if 'src' in tag.attrs:
             src = tag['src']
-            if not src.startswith('{% static'):
+            if not (src.startswith('{% static') or src.startswith('https://') or src.startswith('http://')):
                 tag['src'] = "{% static '" + src + "' %}"
 
     # Pretty-print the modified HTML
