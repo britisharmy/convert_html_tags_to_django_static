@@ -13,8 +13,7 @@ def create_view_methods(folder_path):
 
     for html_file in html_files:
         # Generate the method name from the HTML file name
-        method_name = re.sub(r'[^a-zA-Z0-9_]', '', os.path.splitext(html_file)[0])
-        method_name = method_name.replace('-', '_')  # Replace hyphens with underscores
+        method_name = os.path.splitext(html_file)[0]
 
         # Define the view method
         def view_method(request):
