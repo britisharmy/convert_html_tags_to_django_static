@@ -36,5 +36,10 @@ Always back up your files before running the script to avoid accidental data los
 # Added ability to generate view methods based on html file names and make urls.py entries. 
 
 - You can now generate view names and have url entries created for you to ensure you move even faster.
+
+# Added script to inject existing partials to your target file
+
+- Supposing you have `header.html` and `footer.html` already created, run `create_partials_includes_without_file_creation.py` to avoid repeating creating fresh html files.
+  
 Cheers.
 
